@@ -23,6 +23,17 @@ def findContactList(network, name, extList):
     return
 
 
+def remContact(network, person, friend):
+    if person not in network.keys():
+        print "The "+ person+" itself doesn't exist !!"
+    else:
+        if friend not in network[person]:
+            print person+" has no connecteion with "+friend
+        else:
+            network[person].remove(friend)
+            print " Contact Deleted \m/"
+
+    return
 
 
 def addContact(network, person, friend):
@@ -59,9 +70,9 @@ for i in range(0,num):
 
 while(1):
 
-    print "\n 1 - Add new contact in friend list \n 2 - Add new Person \n 3 - Find Extended Contact List \n 4 - Finish the Script !! \m/"
+    print "\n 1 - Add new contact in friend list \n 2 - Remove a contact from friend list \n 3 - Add new Person \n 4 - Find Extended Contact List \n 5 - Finish the Script !! \m/"
     val = int(raw_input())
-    if val == 2:
+    if val == 3:
         print "Enter name of person"
         name = raw_input().split(" ")
         addPerson(network, name[0])
@@ -69,7 +80,13 @@ while(1):
         print "Enter name of person and the name of new contact :"
         names = raw_input().split(" ")
         addContact(network, names[0], names[1])
-    elif val == 3:
+    elif val == 2:
+        print "Enter name of person and the name of contact to be deleted :"
+        names = raw_input().split(" ")
+        remContact(network, names[0], names[1])
+
+
+    elif val == 4:
         print "Enter name of person, for which you would like to see all contacts: "
         name = raw_input()
         extList = []
@@ -80,7 +97,7 @@ while(1):
         else:
             print name+"\'s extended contacts: ",
             print extList
-    elif val == 4:
+    elif val == 5:
         break
     else:
         print "dude what are you doing ... read the options first !!"
